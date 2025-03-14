@@ -1,0 +1,252 @@
+.audience {
+  background-color: var(--light-bg);
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 80px;
+}
+
+.section-tag {
+  display: inline-block;
+  background: var(--gradient-primary);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(52, 152, 219, 0.2);
+}
+
+.section-title {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  color: var(--secondary-color);
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  line-height: 1.7;
+}
+
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+  margin-bottom: 70px;
+}
+
+.audience-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 40px 30px;
+  box-shadow: var(--box-shadow);
+  transition: var(--transition);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  height: 100%;
+}
+
+.audience-card:hover {
+  box-shadow: var(--box-shadow-hover);
+}
+
+.audience-card:hover .audience-icon-wrapper {
+  transform: scale(1.1);
+}
+
+.audience-icon-wrapper {
+  margin: 0 auto 25px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition);
+  position: relative;
+}
+
+.audience-icon {
+  font-size: 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.icon-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.audience-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: var(--secondary-color);
+  position: relative;
+  z-index: 1;
+}
+
+.audience-card p {
+  color: var(--text-color);
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  transition: var(--transition);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.audience-card:hover .card-overlay {
+  transform: scaleX(1);
+}
+
+.card-decoration {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(
+    circle at top right,
+    rgba(0, 0, 0, 0.03) 0%,
+    transparent 70%
+  );
+  z-index: 0;
+}
+
+.audience-cta {
+  background: var(--gradient-primary);
+  border-radius: var(--border-radius);
+  padding: 60px;
+  text-align: center;
+  color: white;
+  box-shadow: var(--box-shadow);
+  margin-top: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-decoration-circle {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  top: -100px;
+  left: -100px;
+}
+
+.cta-decoration-dots {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.2) 2px,
+    transparent 2px
+  );
+  background-size: 15px 15px;
+  bottom: -20px;
+  right: -20px;
+}
+
+.audience-cta h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+.audience-cta p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+}
+
+.audience-cta .btn {
+  background: white;
+  color: var(--primary-color);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.audience-cta .btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 992px) {
+  .audience {
+    padding: 80px 0;
+  }
+
+  .section-title {
+    font-size: 2.4rem;
+  }
+
+  .audience-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .audience-cta {
+    padding: 50px 30px;
+  }
+
+  .audience-cta h3 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .audience {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .audience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .audience-cta {
+    padding: 40px 25px;
+  }
+
+  .audience-cta h3 {
+    font-size: 1.4rem;
+  }
+
+  .audience-cta p {
+    font-size: 1rem;
+  }
+}

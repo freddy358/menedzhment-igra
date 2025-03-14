@@ -1,0 +1,155 @@
+.game-process {
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 60px;
+}
+
+.game-process-content {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.game-process-image {
+  flex: 1;
+  position: relative;
+}
+
+.game-process-image img {
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  position: relative;
+  z-index: 2;
+}
+
+.image-decoration {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.decoration-shape {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  bottom: -30px;
+  left: -30px;
+  background: var(--gradient-primary);
+  opacity: 0.1;
+  border-radius: var(--border-radius);
+  z-index: 1;
+}
+
+.process-steps {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.process-steps::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 35px;
+  width: 2px;
+  background: var(--gradient-primary);
+  opacity: 0.3;
+}
+
+.process-step {
+  display: flex;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.process-step:last-child {
+  margin-bottom: 0;
+}
+
+.step-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.5rem;
+  z-index: 3;
+}
+
+.step-number {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-right: 30px;
+  z-index: 2;
+  box-shadow: 0 10px 20px rgba(52, 152, 219, 0.2);
+  position: relative;
+}
+
+.step-content {
+  flex: 1;
+  padding-top: 10px;
+  text-align: left;
+}
+
+.step-content h3 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: var(--secondary-color);
+  font-weight: 700;
+}
+
+.step-content p {
+  color: var(--text-color);
+  line-height: 1.7;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 992px) {
+  .game-process-content {
+    flex-direction: column;
+  }
+
+  .game-process-image {
+    margin-bottom: 60px;
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .process-steps::before {
+    left: 30px;
+  }
+
+  .step-number {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    margin-right: 25px;
+  }
+
+  .step-content h3 {
+    font-size: 1.4rem;
+  }
+
+  .step-content p {
+    font-size: 1rem;
+  }
+}
