@@ -3,36 +3,71 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import './GameProcess.css';
 
-const GameProcess: React.FC = () => {
+interface GameProcessProps {
+  language: 'ru' | 'en';
+}
+
+const GameProcess: React.FC<GameProcessProps> = ({ language }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
 
+  const translations = {
+    ru: {
+      title: 'Обучение через игру',
+      subtitle: 'Наш уникальный подход сочетает теорию и практику в увлекательном игровом формате',
+      step1Title: 'Игра',
+      step1Desc: 'Управляйте подразделением, выполняйте задачи, решайте конфликты в реалистичной симуляции.',
+      step2Title: 'Обратная связь',
+      step2Desc: 'Анализируйте результаты своих решений и корректируйте стратегию.',
+      step3Title: 'Обучение',
+      step3Desc: 'Изучайте теоретическую часть по менеджменту и Agile методологиям.',
+      step4Title: 'Практика',
+      step4Desc: 'Отрабатывайте реальные сценарии в игре, планируя и выполняя 6 спринтов.',
+      imageAlt: 'Процесс обучения'
+    },
+    en: {
+      title: 'Learning through play',
+      subtitle: 'Our unique approach combines theory and practice in an engaging game format',
+      step1Title: 'Game',
+      step1Desc: 'Manage a division, complete tasks, resolve conflicts in a realistic simulation.',
+      step2Title: 'Feedback',
+      step2Desc: 'Analyze the results of your decisions and adjust your strategy.',
+      step3Title: 'Learning',
+      step3Desc: 'Study the theoretical part on management and Agile methodologies.',
+      step4Title: 'Practice',
+      step4Desc: 'Work through real scenarios in the game, planning and executing 6 sprints.',
+      imageAlt: 'Learning process'
+    }
+  };
+
+  const t = translations[language];
+
   const steps = [
     {
       number: 1,
-      title: "Игра",
-      description: "Управляйте подразделением, выполняйте задачи, решайте конфликты в реалистичной симуляции.",
-      icon: "🎮"
+      title: t.step1Title,
+      description: t.step1Desc,
+      icon: <i className="fas fa-gamepad"></i>
     },
     {
       number: 2,
-      title: "Обратная связь",
-      description: "Анализируйте результаты своих решений и корректируйте стратегию.",
-      icon: "📊"
+      title: t.step2Title,
+      description: t.step2Desc,
+      icon: <i className="fas fa-chart-bar"></i>
     },
     {
       number: 3,
-      title: "Обучение",
-      description: "Изучайте теоретическую часть по менеджменту и Agile методологиям.",
-      icon: "📚"
+      title: t.step3Title,
+      description: t.step3Desc,
+      icon: <i className="fas fa-book"></i>
     },
     {
       number: 4,
-      title: "Практика",
-      description: "Отрабатывайте реальные сценарии в игре, планируя и выполняя 6 спринтов.",
-      icon: "🚀"
+      title: t.step4Title,
+      description: t.step4Desc,
+      icon: <i className="fas fa-rocket"></i>
     }
   ];
 
@@ -45,10 +80,8 @@ const GameProcess: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="section-header"
         >
-          <h2 className="section-title">Обучение через игру</h2>
-          <p className="section-subtitle">
-            Наш уникальный подход сочетает теорию и практику в увлекательном игровом формате
-          </p>
+          <h2 className="section-title">{t.title}</h2>
+          <p className="section-subtitle">{t.subtitle}</p>
         </motion.div>
 
         <div className="game-process-content">
@@ -59,12 +92,12 @@ const GameProcess: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <img 
-              src="/images/game-process.png" 
-              alt="Процесс обучения" 
+              src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+              alt={t.imageAlt} 
               className="img-fluid"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.src = "https://via.placeholder.com/500x600/3498db/ffffff?text=Процесс+обучения";
+                target.src = "https://via.placeholder.com/500x600/3498db/ffffff?text=Learning+Process";
               }}
             />
             <div className="image-decoration">

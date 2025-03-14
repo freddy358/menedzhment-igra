@@ -3,7 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import './Testimonials.css';
 
-const Testimonials: React.FC = () => {
+interface TestimonialsProps {
+  language: 'ru' | 'en';
+}
+
+const Testimonials: React.FC<TestimonialsProps> = ({ language }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
@@ -11,34 +15,97 @@ const Testimonials: React.FC = () => {
   
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const translations = {
+    ru: {
+      title: 'Что говорят участники?',
+      subtitle: 'Отзывы наших выпускников о программе обучения и полученных результатах',
+      description: 'Наши выпускники отмечают значительное улучшение навыков управления проектами и командой после прохождения программы. Многие успешно внедрили принципы Agile в своих компаниях и добились повышения эффективности работы.',
+      testimonial1: {
+        quote: 'Игровой формат помог мне лучше понять принципы Agile и научиться применять их на практике.',
+        author: 'Алексей',
+        position: 'Project Manager',
+        company: 'Tech Solutions'
+      },
+      testimonial2: {
+        quote: 'Благодаря программе я научилась эффективно управлять командой и ресурсами в условиях неопределенности.',
+        author: 'Мария',
+        position: 'Team Lead',
+        company: 'Digital Agency'
+      },
+      testimonial3: {
+        quote: 'Отличный баланс теории и практики. Рекомендую всем, кто хочет развиваться в управлении IT-проектами.',
+        author: 'Дмитрий',
+        position: 'Product Owner',
+        company: 'Startup Hub'
+      },
+      testimonial4: {
+        quote: 'Программа дала мне практические инструменты для эффективного управления проектами и командой.',
+        author: 'Елена',
+        position: 'Scrum Master',
+        company: 'Innovation Lab'
+      }
+    },
+    en: {
+      title: 'What do participants say?',
+      subtitle: 'Feedback from our graduates about the training program and the results obtained',
+      description: 'Our graduates note a significant improvement in project and team management skills after completing the program. Many have successfully implemented Agile principles in their companies and achieved increased work efficiency.',
+      testimonial1: {
+        quote: 'The game format helped me better understand Agile principles and learn to apply them in practice.',
+        author: 'Alex',
+        position: 'Project Manager',
+        company: 'Tech Solutions'
+      },
+      testimonial2: {
+        quote: 'Thanks to the program, I learned to effectively manage a team and resources in conditions of uncertainty.',
+        author: 'Maria',
+        position: 'Team Lead',
+        company: 'Digital Agency'
+      },
+      testimonial3: {
+        quote: 'Great balance of theory and practice. I recommend it to everyone who wants to develop in IT project management.',
+        author: 'Dmitry',
+        position: 'Product Owner',
+        company: 'Startup Hub'
+      },
+      testimonial4: {
+        quote: 'The program gave me practical tools for effective project and team management.',
+        author: 'Elena',
+        position: 'Scrum Master',
+        company: 'Innovation Lab'
+      }
+    }
+  };
+
+  const t = translations[language];
+
   const testimonials = [
     {
-      avatar: "👨‍💻",
-      quote: "Игровой формат помог мне лучше понять принципы Agile и научиться применять их на практике.",
-      author: "Алексей",
-      position: "Project Manager",
-      company: "Tech Solutions"
+      avatar: <i className="fas fa-user-tie"></i>,
+      quote: t.testimonial1.quote,
+      author: t.testimonial1.author,
+      position: t.testimonial1.position,
+      company: t.testimonial1.company
     },
     {
-      avatar: "👩‍💼",
-      quote: "Благодаря программе я научилась эффективно управлять командой и ресурсами в условиях неопределенности.",
-      author: "Мария",
-      position: "Team Lead",
-      company: "Digital Agency"
+      avatar: <i className="fas fa-user-alt"></i>,
+      quote: t.testimonial2.quote,
+      author: t.testimonial2.author,
+      position: t.testimonial2.position,
+      company: t.testimonial2.company
     },
     {
-      avatar: "👨‍🚀",
-      quote: "Отличный баланс теории и практики. Рекомендую всем, кто хочет развиваться в управлении IT-проектами.",
-      author: "Дмитрий",
-      position: "Product Owner",
-      company: "Startup Hub"
+      avatar: <i className="fas fa-user-astronaut"></i>,
+      quote: t.testimonial3.quote,
+      author: t.testimonial3.author,
+      position: t.testimonial3.position,
+      company: t.testimonial3.company
     },
     {
-      avatar: "👩‍🔬",
-      quote: "Программа дала мне практические инструменты для эффективного управления проектами и командой.",
-      author: "Елена",
-      position: "Scrum Master",
-      company: "Innovation Lab"
+      avatar: <i className="fas fa-user-graduate"></i>,
+      quote: t.testimonial4.quote,
+      author: t.testimonial4.author,
+      position: t.testimonial4.position,
+      company: t.testimonial4.company
     }
   ];
 
@@ -87,10 +154,8 @@ const Testimonials: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="section-header"
         >
-          <h2 className="section-title">Что говорят участники?</h2>
-          <p className="section-subtitle">
-            Отзывы наших выпускников о программе обучения и полученных результатах
-          </p>
+          <h2 className="section-title">{t.title}</h2>
+          <p className="section-subtitle">{t.subtitle}</p>
         </motion.div>
 
         <div className="testimonials-content" ref={ref}>
@@ -100,11 +165,7 @@ const Testimonials: React.FC = () => {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <p>
-              Наши выпускники отмечают значительное улучшение навыков управления проектами и командой 
-              после прохождения программы. Многие успешно внедрили принципы Agile в своих компаниях 
-              и добились повышения эффективности работы.
-            </p>
+            <p>{t.description}</p>
           </motion.div>
           
           <div className="testimonial-slider">
@@ -133,8 +194,8 @@ const Testimonials: React.FC = () => {
               </AnimatePresence>
               
               <div className="slider-controls">
-                <button className="control-btn prev" onClick={handlePrev}>
-                  &#8592;
+                <button className="control-btn prev" onClick={handlePrev} aria-label="Previous testimonial">
+                  <i className="fas fa-chevron-left"></i>
                 </button>
                 <div className="slider-dots">
                   {testimonials.map((_, index) => (
@@ -145,11 +206,12 @@ const Testimonials: React.FC = () => {
                         setDirection(index > currentIndex ? 1 : -1);
                         setCurrentIndex(index);
                       }}
+                      aria-label={`Go to testimonial ${index + 1}`}
                     />
                   ))}
                 </div>
-                <button className="control-btn next" onClick={handleNext}>
-                  &#8594;
+                <button className="control-btn next" onClick={handleNext} aria-label="Next testimonial">
+                  <i className="fas fa-chevron-right"></i>
                 </button>
               </div>
             </div>

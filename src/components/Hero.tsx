@@ -1,10 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import './Hero.css';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  language: 'ru' | 'en';
+}
+
+const Hero: React.FC<HeroProps> = ({ language }) => {
+  useEffect(() => {
+    console.log('Hero: Текущий язык', language);
+  }, [language]);
+
+  const translations = {
+    ru: {
+      title: 'Погрузись в реальность',
+      subtitle: 'управления: учись, играя!',
+      description: 'Стань лидером, способным управлять IT-проектами в условиях неопределённости. Наша программа основывается на реальных принципах Agile, моделируя вызовы и задачи менеджеров IT-компаний.',
+      tryFree: 'Попробовать бесплатно',
+      register: 'Записаться на программу',
+      graduates: 'Выпускников',
+      positiveReviews: 'Положительных отзывов',
+      yearsExperience: 'Лет опыта',
+      imageAlt: 'Управление IT-проектами'
+    },
+    en: {
+      title: 'Dive into the reality',
+      subtitle: 'of management: learn by playing!',
+      description: 'Become a leader capable of managing IT projects in conditions of uncertainty. Our program is based on real Agile principles, modeling the challenges and tasks of IT company managers.',
+      tryFree: 'Try for free',
+      register: 'Register for the program',
+      graduates: 'Graduates',
+      positiveReviews: 'Positive reviews',
+      yearsExperience: 'Years of experience',
+      imageAlt: 'IT Project Management'
+    }
+  };
+
+  const t = translations[language];
+
   return (
-    <section className="hero">
+    <section className="hero" id="hero">
       <div className="bg-pattern"></div>
       <div className="container hero-container">
         <motion.div 
@@ -14,43 +49,39 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <h1>
-            <span className="text-gradient">Погрузись в реальность</span> управления: учись, играя!
+            <span className="text-gradient">{t.title}</span> {t.subtitle}
           </h1>
-          <p>
-            Стань лидером, способным управлять IT-проектами в условиях неопределённости. 
-            Наша программа основывается на реальных принципах Agile, моделируя вызовы и 
-            задачи менеджеров IT-компаний.
-          </p>
+          <p>{t.description}</p>
           <div className="hero-buttons">
             <motion.a 
-              href="#" 
+              href="#contact" 
               className="btn"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Попробовать бесплатно
+              {t.tryFree}
             </motion.a>
             <motion.a 
-              href="#" 
+              href="#contact" 
               className="btn btn-secondary"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Записаться на программу
+              {t.register}
             </motion.a>
           </div>
           <div className="hero-stats">
             <div className="stat-item">
               <span className="stat-number">500+</span>
-              <span className="stat-label">Выпускников</span>
+              <span className="stat-label">{t.graduates}</span>
             </div>
             <div className="stat-item">
               <span className="stat-number">97%</span>
-              <span className="stat-label">Положительных отзывов</span>
+              <span className="stat-label">{t.positiveReviews}</span>
             </div>
             <div className="stat-item">
               <span className="stat-number">8</span>
-              <span className="stat-label">Лет опыта</span>
+              <span className="stat-label">{t.yearsExperience}</span>
             </div>
           </div>
         </motion.div>
@@ -61,12 +92,12 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <img 
-            src="/images/hero-image.png" 
-            alt="Управление IT-проектами" 
+            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" 
+            alt={t.imageAlt} 
             className="img-fluid hero-img"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = "https://via.placeholder.com/500x350/3498db/ffffff?text=Управление+IT-проектами";
+              target.src = "https://via.placeholder.com/500x350/3498db/ffffff?text=IT+Project+Management";
             }}
           />
           <div className="hero-image-decoration">
