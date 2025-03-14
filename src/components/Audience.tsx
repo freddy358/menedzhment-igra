@@ -3,11 +3,52 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import './Audience.css';
 
-const Audience: React.FC = () => {
+interface AudienceProps {
+  language: 'ru' | 'en';
+}
+
+const Audience: React.FC<AudienceProps> = ({ language }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
+
+  const translations = {
+    ru: {
+      sectionTag: 'Целевая аудитория',
+      title: 'Для кого эта программа?',
+      subtitle: 'Наша программа разработана для различных специалистов, стремящихся развивать навыки управления',
+      group1Title: 'Начинающие менеджеры',
+      group1Desc: 'Получите необходимые навыки управления проектами и командой с нуля.',
+      group2Title: 'Руководители',
+      group2Desc: 'Освойте принципы Agile и современные подходы к управлению IT-проектами.',
+      group3Title: 'Команды',
+      group3Desc: 'Улучшите процессы взаимодействия и повысьте эффективность работы.',
+      group4Title: 'Будущие лидеры',
+      group4Desc: 'Подготовьтесь к управленческой роли, развивая необходимые компетенции.',
+      ctaTitle: 'Готовы начать свой путь к успешному управлению проектами?',
+      ctaDesc: 'Присоединяйтесь к нашей программе и получите все необходимые навыки для успешной карьеры в управлении IT-проектами',
+      ctaButton: 'Записаться на программу'
+    },
+    en: {
+      sectionTag: 'Target audience',
+      title: 'Who is this program for?',
+      subtitle: 'Our program is designed for various professionals seeking to develop management skills',
+      group1Title: 'Beginning managers',
+      group1Desc: 'Get the necessary project and team management skills from scratch.',
+      group2Title: 'Leaders',
+      group2Desc: 'Master Agile principles and modern approaches to IT project management.',
+      group3Title: 'Teams',
+      group3Desc: 'Improve interaction processes and increase work efficiency.',
+      group4Title: 'Future leaders',
+      group4Desc: 'Prepare for a management role by developing the necessary competencies.',
+      ctaTitle: 'Ready to start your journey to successful project management?',
+      ctaDesc: 'Join our program and get all the skills you need for a successful career in IT project management',
+      ctaButton: 'Register for the program'
+    }
+  };
+
+  const t = translations[language];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -33,27 +74,27 @@ const Audience: React.FC = () => {
 
   const audienceGroups = [
     {
-      icon: "👨‍💼",
-      title: "Начинающие менеджеры",
-      description: "Получите необходимые навыки управления проектами и командой с нуля.",
+      icon: <i className="fas fa-user-tie"></i>,
+      title: t.group1Title,
+      description: t.group1Desc,
       color: "var(--primary-color)"
     },
     {
-      icon: "👩‍💻",
-      title: "Руководители",
-      description: "Освойте принципы Agile и современные подходы к управлению IT-проектами.",
+      icon: <i className="fas fa-users-cog"></i>,
+      title: t.group2Title,
+      description: t.group2Desc,
       color: "#e74c3c"
     },
     {
-      icon: "👥",
-      title: "Команды",
-      description: "Улучшите процессы взаимодействия и повысьте эффективность работы.",
+      icon: <i className="fas fa-users"></i>,
+      title: t.group3Title,
+      description: t.group3Desc,
       color: "#2ecc71"
     },
     {
-      icon: "🚀",
-      title: "Будущие лидеры",
-      description: "Подготовьтесь к управленческой роли, развивая необходимые компетенции.",
+      icon: <i className="fas fa-user-graduate"></i>,
+      title: t.group4Title,
+      description: t.group4Desc,
       color: "#f39c12"
     }
   ];
@@ -68,11 +109,9 @@ const Audience: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="section-header"
         >
-          <span className="section-tag">Целевая аудитория</span>
-          <h2 className="section-title">Для кого эта программа?</h2>
-          <p className="section-subtitle">
-            Наша программа разработана для различных специалистов, стремящихся развивать навыки управления
-          </p>
+          <span className="section-tag">{t.sectionTag}</span>
+          <h2 className="section-title">{t.title}</h2>
+          <p className="section-subtitle">{t.subtitle}</p>
         </motion.div>
         
         <motion.div 
@@ -121,15 +160,15 @@ const Audience: React.FC = () => {
         >
           <div className="cta-decoration-circle"></div>
           <div className="cta-decoration-dots"></div>
-          <h3>Готовы начать свой путь к успешному управлению проектами?</h3>
-          <p>Присоединяйтесь к нашей программе и получите все необходимые навыки для успешной карьеры в управлении IT-проектами</p>
+          <h3>{t.ctaTitle}</h3>
+          <p>{t.ctaDesc}</p>
           <motion.a 
-            href="#" 
+            href="#contact" 
             className="btn"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Записаться на программу
+            {t.ctaButton}
           </motion.a>
         </motion.div>
       </div>
