@@ -59,9 +59,9 @@ const Header: React.FC<HeaderProps> = ({ language, onLanguageChange }) => {
         >
           <h1>
             <span className="text-gradient">
-              {language === 'ru' ? 'Менеджмент' : 'Management'}
+              IT
             </span>
-            {language === 'ru' ? 'Игра' : 'Game'}
+            {language === 'ru' ? 'ерация' : 'eration'}
           </h1>
         </motion.div>
 
